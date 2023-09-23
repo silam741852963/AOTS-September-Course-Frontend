@@ -1,5 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Balthazar&family=Corinthia&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Balthazar", serif;
+}
+
+img {
+  display: block;
+}
 
 /*# sourceMappingURL=style.css.map */

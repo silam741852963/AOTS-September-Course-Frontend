@@ -6,17 +6,6 @@
   </section>
 </template>
 <script setup>
-import { ref } from "vue";
-import axios from "../../api/axios";
-
-const services = ref([]);
-const getServices = async () => {
-  try {
-    const response = await axios.get("/service");
-    services.value = response.data;
-  } catch (err) {
-    console.log(err);
-  }
-};
-getServices();
+import { inject } from "vue";
+const services = inject("services");
 </script>
