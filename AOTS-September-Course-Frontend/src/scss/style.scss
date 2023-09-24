@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "primeicons/primeicons.css";
 @import url("https://fonts.googleapis.com/css2?family=Balthazar&family=Corinthia&display=swap");
 * {
   margin: 0;
@@ -10,4 +11,20 @@
 }
 img {
   display: block;
+}
+html {
+  scroll-behavior: smooth;
+}
+.formControl {
+  display: flex;
+  gap: 1em;
+}
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+}
+input[type="checkbox"]:checked {
+  background-color: #fff;
 }

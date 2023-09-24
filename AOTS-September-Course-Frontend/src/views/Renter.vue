@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="min-h-screen">
     <ul>
       <li v-for="renter in renters">{{ renter }}</li>
     </ul>

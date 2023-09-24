@@ -1,22 +1,47 @@
 <template>
-  <section>
-    <form @submit.prevent="handleSubmit">
+  <section class="min-h-screen">
+    <form
+      @submit.prevent="handleSubmit"
+      class="text-3xl flex flex-col gap-10 p-5"
+    >
       <div class="formControl">
         <label for="name">Name</label>
-        <input type="text" id="name" v-model="form.name" autocomplete="off" />
+        <input
+          type="text"
+          id="name"
+          v-model="form.name"
+          autocomplete="off"
+          class="border-2 border-white rounded-lg bg-black"
+        />
       </div>
       <div class="formControl">
         <label for="group">Group</label>
-        <input type="text" id="group" v-model="form.group" autocomplete="off" />
+        <input
+          type="text"
+          id="group"
+          v-model="form.group"
+          autocomplete="off"
+          class="border-2 border-white rounded-lg bg-black"
+        />
       </div>
       <div class="formControl">
         <p v-if="!validPrice">Please enter a valid price</p>
         <label for="price">Price</label>
-        <input type="text" id="price" v-model="form.price" autocomplete="off" />
+        <input
+          type="text"
+          id="price"
+          v-model="form.price"
+          autocomplete="off"
+          class="border-2 border-white rounded-lg bg-black"
+        />
       </div>
       <div class="formControl">
         <label for="type">Type</label>
-        <select id="type" v-model="form.type">
+        <select
+          id="type"
+          v-model="form.type"
+          class="border-2 border-white rounded-lg bg-black"
+        >
           <option value="normal">Normal</option>
           <option value="deluxe">Deluxe</option>
         </select>
@@ -33,23 +58,23 @@
           id="{{ service.name }}"
           value="{{ service._id }}"
           v-model="addedServices[index].added"
+          class="border-2 border-white rounded-lg"
         />
       </div>
-      <button :disabled="!validPrice">Submit</button>
+      <button
+        :disabled="!validPrice || !form.name || !form.group || !form.price"
+        class="w-full border-2 border-white rounded-lg text-black bg-white disabled:opacity-50"
+      >
+        Add
+      </button>
     </form>
-  </section>
-  <section>
-    <ul>
-      <li v-for="room in rooms">{{ room }}</li>
-    </ul>
   </section>
 </template>
 <script setup>
 import { inject, ref, watch } from "vue";
-import axios from "../api/axios";
-const rooms = inject("rooms");
+import axios from "../../api/axios";
 const services = inject("services");
-let addedServices = ref(
+const addedServices = ref(
   services.map((service) => ({ ...service, added: false }))
 );
 const form = ref({
@@ -69,8 +94,12 @@ const handleSubmit = async () => {
       })),
   };
   try {
-    const response = axios.post("room", submit);
-    console.log(submit);
+    const response = await axios.post("room", submit);
+    alert("Add room successfully!");
+    console.log(response);
+    form.value.name = "";
+    form.value.group = "";
+    form.value.price = "";
   } catch (err) {
     console.log(err);
   }

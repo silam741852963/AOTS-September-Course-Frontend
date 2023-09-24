@@ -1,4 +1,2 @@
-<template>Register</template>
-<script>
-export default {};
-</script>
+<template><section class="min-h-screen">Register</section></template>
+<script setup></script>

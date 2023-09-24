@@ -1,4 +1,2 @@
-<template>Login</template>
-<script>
-export default {};
-</script>
+<template><section class="min-h-screen">Login</section></template>
+<script setup></script>
