@@ -42,7 +42,6 @@
         />
       </div>
       <div class="formControl">
-        <p v-if="!validPrice">Please enter a valid price</p>
         <label for="price">Price</label>
         <input
           type="text"
@@ -51,6 +50,7 @@
           autocomplete="off"
           class="border-2 border-white rounded-lg bg-black"
         />
+        <p v-if="!validPrice">Please enter a valid price</p>
       </div>
       <div class="formControl">
         <label for="type">Type</label>
@@ -64,7 +64,6 @@
         </select>
       </div>
       <div class="formControl">
-        <p v-if="!validDeposit">Please enter a valid deposit</p>
         <label for="deposit">Deposit</label>
         <input
           type="text"
@@ -73,6 +72,7 @@
           autocomplete="off"
           class="border-2 border-white rounded-lg bg-black"
         />
+        <p v-if="!validDeposit">Please enter a valid deposit</p>
       </div>
       <div class="formControl">
         <label for="status">Status</label>
@@ -86,7 +86,6 @@
         </select>
       </div>
       <div class="formControl">
-        <p v-if="!validRenter">Please enter a valid renter number</p>
         <label for="renter">Renter</label>
         <input
           type="text"
@@ -95,6 +94,7 @@
           autocomplete="off"
           class="border-2 border-white rounded-lg bg-black"
         />
+        <p v-if="!validRenter">Please enter a valid renter number</p>
       </div>
       <div class="formControl" v-for="(service, index) in services">
         <label for="{{ service.name }}">{{
@@ -155,7 +155,7 @@ const rooms = inject("rooms");
 const services = inject("services");
 
 const target = ref({
-  name: rooms[0].name,
+  name: "",
 });
 const form = ref(rooms[0]);
 const formServices = ref({});
@@ -190,6 +190,7 @@ watch(
     }));
   }
 );
+
 let groups = rooms.map((room) => room.group);
 const onlyUnique = (value, index, array) => {
   return array.indexOf(value) === index;

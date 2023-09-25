@@ -25,7 +25,6 @@
         />
       </div>
       <div class="formControl">
-        <p v-if="!validPrice">Please enter a valid price</p>
         <label for="price">Price</label>
         <input
           type="text"
@@ -34,6 +33,7 @@
           autocomplete="off"
           class="border-2 border-white rounded-lg bg-black"
         />
+        <p v-if="!validPrice">Please enter a valid price</p>
       </div>
       <div class="formControl">
         <label for="type">Type</label>
