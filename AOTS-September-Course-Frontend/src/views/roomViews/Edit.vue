@@ -155,7 +155,7 @@ const rooms = inject("rooms");
 const services = inject("services");
 
 const target = ref({
-  name: "",
+  name: rooms[0].name,
 });
 const form = ref(rooms[0]);
 const formServices = ref({});

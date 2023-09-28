@@ -116,7 +116,7 @@
           class="border-2 border-white rounded-lg bg-black"
         />
       </div>
-      <div class="formControl">
+      <div class="formControl flex" v-if="displayRented">
         <label for="room">Room</label>
         <select
           id="room"
@@ -132,6 +132,43 @@
             </option>
           </optgroup>
         </select>
+        <div class="formControl">
+          <label for="displayRented">Show rented rooms</label>
+          <input
+            type="checkbox"
+            id="displayRented"
+            value="displayRented"
+            v-model="displayRented"
+            class="border-2 border-white rounded-lg"
+          />
+        </div>
+      </div>
+      <div class="formControl flex" v-if="!displayRented">
+        <label for="room">Room</label>
+        <select
+          id="room"
+          class="border-2 border-white rounded-lg bg-black"
+          v-model="target.name"
+        >
+          <optgroup
+            v-for="[key, value] of Object.entries(displayIdle)"
+            :label="key.toUpperCase()"
+          >
+            <option v-for="room in value" :value="room.name">
+              {{ room.name.toUpperCase() }}
+            </option>
+          </optgroup>
+        </select>
+        <div class="formControl">
+          <label for="displayRented">Show rented rooms</label>
+          <input
+            type="checkbox"
+            id="displayRented"
+            value="displayRented"
+            v-model="displayRented"
+            class="border-2 border-white rounded-lg"
+          />
+        </div>
       </div>
       <button
         :disabled="
@@ -202,6 +239,15 @@ groups.forEach((group) => {
     .filter((room) => room.group === group)
     .map((room) => ({ ...room, info: false }));
 });
+
+const displayIdle = ref({});
+groups.forEach((group) => {
+  displayIdle.value[group] = rooms
+    .filter((room) => room.group === group && room.status === "idle")
+    .map((room) => ({ ...room, info: false }));
+});
+
+const displayRented = ref(false);
 
 const reg1 = new RegExp(
   "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"

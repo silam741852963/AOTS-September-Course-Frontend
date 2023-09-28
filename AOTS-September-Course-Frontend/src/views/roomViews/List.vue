@@ -3,8 +3,8 @@
     <div v-for="[key, value] of Object.entries(display)" class="text-2xl">
       Group {{ key.toUpperCase() }} <br />
       <ul class="text-base flex gap-10 flex-wrap">
-        <li v-for="room in value" @click="handleInfo(room)" class="flex gap-4">
-          <figure class="text-center">
+        <li v-for="room in value" class="flex gap-4">
+          <figure class="text-center cursor-pointer" @click="handleInfo(room)">
             <i class="pi pi-home" style="font-size: 5rem"></i>
             <figcaption>{{ room.name.toUpperCase() }}</figcaption>
           </figure>

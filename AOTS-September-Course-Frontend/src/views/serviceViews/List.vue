@@ -4,9 +4,8 @@
       <li
         v-for="service in display"
         class="flex m-3 gap-3"
-        @click="handleInfo(service)"
       >
-        <figure class="text-center">
+        <figure class="text-center cursor-pointer" @click="handleInfo(service)">
           <i class="pi pi-slack" style="font-size: 5rem"></i>
           <figcaption>
             {{

@@ -210,7 +210,7 @@ watch(
     form.value.room = rooms.filter(
       (room) => room.name === target.value.room
     )[0]._id;
-    form.value.birth_day = form.value.birth_day.slice(0, 10);
+    form.value.birth_day = form.value.birth_day?.slice(0, 10);
   }
 );
 
@@ -220,12 +220,12 @@ watch(
     form.value = renters.filter(
       (renter) => renter.name === target.value.name
     )[0];
-    form.value.birth_day = form.value.birth_day.slice(0, 10);
+    form.value.birth_day = form.value.birth_day?.slice(0, 10);
   }
 );
 
 watch(form, () => {
-  form.value.birth_day = form.value.birth_day.slice(0, 10);
+  form.value.birth_day = form.value.birth_day?.slice(0, 10);
 });
 
 const reg1 = new RegExp(
